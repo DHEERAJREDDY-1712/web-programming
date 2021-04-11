@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Luxury Cars</title>
+        <style>
+            body,
+            html {
+                height: 100%;
+                width: 100%;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+    
+            }
+    
+            .bg {
+                background-image: url("images/bg1.jpg");
+                height: 100%;
+                width: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+    
+            h2 {
+                font-size: 3em;
+                color: rgb(10, 129, 158);
+                margin-bottom: 1em;
+                text-align: left;
+            }
+    
+            span {
+                float: right;
+                font-size: 1.5em;
+                margin-bottom: 3em;
+                margin-right: 5em;
+                color: white;
+                word-spacing: 3em;
+            }
+    
+            a {
+                color: rgb(69, 143, 69);
+                background-color: transparent;
+                text-decoration: none;
+            }
+     
+            a:visited {
+                color: rgb(69, 143, 69);
+                background-color: transparent;
+                text-decoration: none;
+            }
+    
+            a:hover {
+                color: rgb(127, 182, 150);
+                background-color: transparent;
+                text-decoration: none;
+            }
+    
+            div.gallery {
+                margin-top: 0.12em;
+                margin-left: 0.32em;
+                margin-right: 0.32em;
+                margin-bottom: 2.32em;
+                border: 1px solid #ccc;
+                float: left;
+                padding-bottom: 0.12em ;
+                width: 30.8em;
+                height: 25em;
+            }
+    
+            div.gallery:hover {
+                border: 1px solid rgb(48, 47, 47);
+            }
+    
+            div.gallery img {
+                width: 100%;
+                height: 18em;
+            }
+    
+            div.description {
+                margin-bottom: 1.32em;
+                padding: 1.00em;
+                text-align: center;
+                color: rgb(21, 165, 129);
+            }
+    
+            button {
+                font-size: large;
+                margin-left: 0.3em;
+                margin-bottom: 0.3em;
+                margin-top:0.3em;
+                background-color: rgb(233, 231, 118);
+            }
+        </style>
+    </head>
+    
+
+<body class="bg">
+    <span>
+        <a href="economy">Economy-Cars</a>
+        <a href="suv">SUV-Cars</a>
+        <a href="luxury">Luxury-Cars</a></span>
+
+    <h2>Luxurious Cars</h2>
+
+    
+    <%if(usertype=='customer'){
+        for(var i=0;i<luxuries.length;i++){ %>
+            <div class="gallery">
+                <a href="<%=luxuries[i].carimage%>">
+                    <img src='<%=luxuries[i].carimage%>' alt="<%=luxuries[i].model%>" width="600" height="400">
+                </a>
+                <div class="description">
+                    Brand: <%=luxuries[i].brand%><br>
+                    Model: <%=luxuries[i].model%><br>
+                    Year: <%=luxuries[i].year%> <br>
+                    Type: <%=luxuries[i].type%> <br>
+                    Hourly Price: <%=luxuries[i].hourlyprice%><br/>
+                    <Button><a href='bookcar?carid=<%=luxuries[i].carid%>'> Book Now </a></Button>   
+               </div>
+                   <br/><br/>
+               </div> 
+               <% }
+            }else{
+                for(var i=0;i<luxuries.length;i++){ %>
+                    <div class="gallery">
+                        <a href="<%=luxuries[i].carimage%>">
+                            <img src='<%=luxuries[i].carimage%>' alt="<%=luxuries[i].model%>" width="600" height="400">
+                        </a>
+                        <div class="description">
+                            Brand: <%=luxuries[i].brand%><br>
+                            Model: <%=luxuries[i].model%><br>
+                            Year: <%=luxuries[i].year%> <br>
+                            Type: <%=luxuries[i].type%> <br>
+                            Hourly Price: <%=luxuries[i].hourlyprice%><br/>
+                            <Button><a href='removecar?carid=<%=luxuries[i].carid%>'> Remove </a></Button>     
+                       </div>
+                           <br/><br/>
+                       </div> 
+                       <% }
+            }
+        %>
+   
+
+
+        <!-- <a href="../public/images/aston_martin.jpg">
+            <img src="images/aston_martin.jpg" alt="aston_martin" width="600" height="400">
+        </a>
+        <div class="description">
+            Brand: Aston Martin<br>
+            Model: DB11<br>
+            Year: 2019<br>
+            Type: Luxury
+        </div> -->
+
+    <footer>
+        <button><a href="cars">Back to Car Types</a></button>
+    </footer>
+
+</body>
+
+</html>
