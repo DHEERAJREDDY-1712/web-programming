@@ -1,0 +1,182 @@
+<html>
+<head>
+<title></title>
+<meta charset="utf-8" />
+<title>Upload images to server using Node JS</title>
+<script src="Scripts/jquery-3.1.1.min.js"></script>
+<script src="Scripts/jquery.form.min.js"></script>
+<style>
+    body,
+    html {
+        height: 100%;
+        width: 100%;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .bg {
+        background-image: url("images/bg1.jpg");
+        height: 100%;
+        width: 100%;
+        color:white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+
+    }
+
+    .p1 {
+        color: white;
+        font-size: 2em;
+    }
+
+    span {
+        float: right;
+        font-size: 1.5em;
+        word-spacing: 1em;
+        margin-right: 5em;
+        margin-top: 1em;
+        color: white;
+    }
+
+    a {
+        color: rgb(69, 143, 69);
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: rgb(69, 143, 69);
+        background-color: transparent;
+        text-decoration: none;
+
+    }
+
+    a:hover {
+        color: rgb(127, 182, 150);
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    div {
+        color: white;
+        padding: 10em;
+        text-align: center;
+        margin-left: 1em;
+        margin-right: 0.5em;
+        margin-top: 4em;
+    }
+
+    legend {
+        border-color: white 1px solid;
+
+    }
+    a:hover {
+            color: rgb(127, 182, 150);
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        div {
+            color: white;
+            padding: 10em;
+            float: left;
+            margin-left: 1em;
+            margin-right: 0.5em;
+            margin-top: 4em;
+        }
+
+        form {
+            float: right;
+            color: white;
+            padding-top: 10em;
+            margin-bottom: 5em;
+            margin-left: 25em;
+        }
+
+        legend {
+            border-color: white 1px solid;
+
+        }
+
+        input {
+            color:black;
+            float: right;
+            margin-right: 1.9em;
+        }
+
+        label {
+            text-align: center;
+            padding: 2em;
+            margin-right: 2em;
+            color: rgb(21, 165, 129);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: rgb(10, 129, 158);
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: rgb(21, 165, 129);
+        }
+
+        .b1 {
+            margin-left: 8em;
+            cursor: pointer;
+        }
+
+    h1 {
+        font-size: 3em;
+        color: rgb(10, 129, 158);
+        margin-bottom: 1em;
+    }
+
+    h2 {
+        font-size: 2.8em;
+        color: rgb(21, 165, 129);
+        text-align: center;
+    }
+</style>
+</head>
+<body class="bg">
+    <header>
+        <span>
+            <a href="home">Home</a>
+            <a href="cars">Cars</a>
+            <a href="aboutus">AboutUs</a>
+            <%
+            if(udata!=null&&udata!=""){
+                 %> <a href="logoutme">Logout</a> <%    
+            }else{
+                  %> <a href="login">Login</a> <%
+            }
+            %>
+        </span>
+    </header>
+    <fieldset>
+        <legend>
+            <h1 id='loginTitle'>Add Car</h1>
+        </legend>
+    <form id="frmUploader" color='#FFF' enctype="multipart/form-data" action="uploadcar" method="post">
+    <table color="#FFF" rows=6 cols=2>  
+     <tr><td color="#FFF" > Car Image: </td><td><input color="#FFF" type="file" name="imguploader" /></td></tr>
+     <tr><td> Car type: </td>
+        <td><select class="form-control" name="cartype" required>
+                <option value="">Select Type</option>
+                <option value="Economy">Economy</option>
+                <option value="SUV">SUV</option>
+                <option value="Luxury">Luxury</option>
+            </select>
+        </td></tr>
+      <tr><td>Car Model:</td> <td><input type="text" name="carmodel" required/></td></tr>
+      <tr><td>Car Brand:</td> <td><input type="text" name="carbrand" required/></td></tr>
+      <tr><td>Car Year:</td> <td><input type="number" value="2018" name="caryear" required/></td></tr>
+      <tr><td>Hourly Price: </td><td><input type="number" name="hourlyprice" required/></td></tr>
+      <tr> <td></td><td><input type="submit" name="submit" id="btnSubmit" value="Upload" required/><td> </tr>
+    </td></table>
+    </form>
+</body>
+</html>
