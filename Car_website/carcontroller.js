@@ -58,7 +58,7 @@ module.exports= function(app) {
     app.get('/login',function(req,res){
         if(req.session.loggedin){
             //res.end('<html><head><script>alert("You\'re already loggedin!");</script></head><body><a href="logout">Logout</body><html>');
-        //res.render("home",{udata:userdata});
+        res.render("home",{udata:userdata});
            // popup.alert({content:"you're already loggedin"});   
         }else{           
         res.render('login',{udata:userdata,usertype:req.session.usertype});
@@ -90,6 +90,25 @@ module.exports= function(app) {
         }
     })
     });
+
+    app.get('/profile',function(req,res){
+        data="";
+        var query=null;
+    if(req.session.usertype=='employee'){
+    query="select * from employee where email='"+req.session.useremail+"';";
+    }else{
+        query="select * from customer where email='"+req.session.useremail+"';";
+    }
+    con.query(query,function(err,result,fields){
+        if(result.length>0){
+            userdata=JSON.parse(JSON.stringify(result));
+            console.log('User data:'+userdata.email);
+            res.render("profile",{udata:userdata});
+        }else{
+            res.end("<html><head><script>alert('please Login to view this page!')</script><head><body><a href='home'>Go Back!</a></body></html>"); 
+        }
+    })
+        });
 
         app.post('/registerme',urlencodedParser,function(req,res){
        
@@ -147,7 +166,7 @@ module.exports= function(app) {
         res.render("addcar",{udata:userdata});
     })
 
-    app.get("/bookcar",function(req,res){
+    app.get("/bookcar",function(req,res){  //read car details
         var carid=req.query.carid;
         console.log("card id"+carid);
         var data="";
@@ -165,7 +184,7 @@ module.exports= function(app) {
             
         }else{
             console.log("not logged in"+data);
-            res.render("bookcar",{ uname : req.session.username, car:data, alert:"empty"});
+            res.render("home",{ uname : req.session.username, car:data, alert:"empty"});
         }
     });
 
@@ -246,6 +265,8 @@ module.exports= function(app) {
                }
             });
     });
+
+    
 
     app.get('/viewbookings',function(req,res){
         data="";
