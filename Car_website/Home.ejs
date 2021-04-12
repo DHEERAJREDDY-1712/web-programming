@@ -94,16 +94,20 @@
             <a href="home">Home</a>   
            <% if((udata==null||udata=="")&&(usertype!="employee")){
             %> <a href="register">Registration</a> <%
-            } %>
+            }else if(udata!=null&&usertype=='customer'){
+                %>    <a href="profile">Profile </a><%
+            } 
+            %>
             <a href="cars">Cars</a>
             <a href="aboutus">AboutUs</a>
             <%
             if(udata!=null&&udata!=""){
-                 %>     <a href="logoutme">Logout</a> <%    
+                 %><a href="logoutme">Logout</a> <%    
             }else{
                   %> <a href="login">Login</a> <%
             }
-            %> 
+            %>
+            
         </span>
 
     </header>
